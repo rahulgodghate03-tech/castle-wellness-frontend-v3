@@ -29,7 +29,7 @@ export default function AdminLogin() {
       <form onSubmit={handleSubmit} className="w-full max-w-sm card">
         <div className="text-center mb-8">
           <div className="font-display text-3xl">
-            Castle <span className="text-gold">Wellness</span>
+            Mr <span className="text-gold">Group</span>
           </div>
           <div className="text-xs text-ivory/40 mt-1 tracking-widest uppercase">Admin Panel</div>
         </div>

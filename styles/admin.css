@@ -28,9 +28,13 @@
 
 .admin-root .btn-ghost {
   @apply border border-gold/30 text-sm px-5 py-2.5 rounded hover:border-gold transition-colors;
+  background: transparent;
   color: #f3ece0 !important;
 }
 
+.admin-root .btn-ghost:hover {
+  background: rgba(201, 162, 75, 0.08);
+}
 .admin-root .card {
   @apply bg-inksoft border border-gold/15 rounded-lg p-5;
 }
