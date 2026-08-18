@@ -17,7 +17,7 @@ export default function Sidebar() {
     <aside className="w-64 shrink-0 bg-inksoft border-r border-gold/15 min-h-screen flex flex-col">
       <div className="p-6 border-b border-gold/15">
         <div className="font-display text-2xl">
-          Castle <span className="text-gold">Wellness</span>
+          Mr <span className="text-gold">Group</span>
         </div>
         <div className="text-xs text-ivory/40 mt-1 tracking-wide">Admin Panel</div>
       </div>
