@@ -4,8 +4,7 @@ import DashboardLayout from "../../../components/admin/DashboardLayout";
 import BusinessSwitcher from "../../../components/admin/BusinessSwitcher";
 import api from "../../../lib/api";
 
-const emptyForm = { title: "", therapyCount: "", price: "", isFeatured: false };
-
+const emptyForm = { title: "", therapyCount: "", price: "", discountPrice: "", isFeatured: false };
 export default function PackagesPage() {
   const [business, setBusiness] = useState(null);
   const [packages, setPackages] = useState([]);
@@ -38,11 +37,11 @@ export default function PackagesPage() {
   };
 
   const handleEdit = (pkg) => {
-    setEditingId(pkg._id);
-    setForm({
+        setForm({
       title: pkg.title,
       therapyCount: pkg.therapyCount,
       price: pkg.price,
+      discountPrice: pkg.discountPrice || "",
       isFeatured: pkg.isFeatured,
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -98,15 +97,14 @@ export default function PackagesPage() {
               />
             </div>
             <div>
-              <label className="text-xs text-ivory/50 mb-1.5 block">Therapy Count</label>
+              <label className="text-xs text-ivory/50 mb-1.5 block">Discount Price (₹) — optional</label>
               <input
-                required
                 type="number"
-                min="1"
+                min="0"
                 className="input-field"
-                value={form.therapyCount}
-                onChange={(e) => setForm({ ...form, therapyCount: e.target.value })}
-                placeholder="20"
+                value={form.discountPrice}
+                onChange={(e) => setForm({ ...form, discountPrice: e.target.value })}
+                placeholder="Leave empty for no discount"
               />
             </div>
             <div>
@@ -121,6 +119,7 @@ export default function PackagesPage() {
                 placeholder="15000"
               />
             </div>
+           
             <div className="flex items-center gap-2 mt-6">
               <input
                 type="checkbox"
@@ -159,7 +158,16 @@ export default function PackagesPage() {
                     </span>
                   )}
                   <div className="text-xs text-ivory/50 mt-2">{p.therapyCount} Sessions</div>
-                  <div className="font-display text-3xl text-goldsoft my-2">₹{p.price}</div>
+                                   <div className="my-2">
+                    {p.discountPrice ? (
+                      <>
+                        <div className="text-ivory/40 text-sm line-through">₹{p.price}</div>
+                        <div className="font-display text-3xl text-goldsoft">₹{p.discountPrice}</div>
+                      </>
+                    ) : (
+                      <div className="font-display text-3xl text-goldsoft">₹{p.price}</div>
+                    )}
+                  </div>
                   <div className="text-[11px] text-ivory/40 mb-4">{p.isActive ? "Active" : "Hidden"}</div>
                   <div className="flex gap-2 text-xs">
                     <button onClick={() => handleEdit(p)} className="btn-ghost flex-1 py-1.5">Edit</button>

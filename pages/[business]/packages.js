@@ -33,10 +33,17 @@ export default function BusinessPackages() {
                   <div className={`pkg-card fade-up ${p.isFeatured ? "featured" : ""}`} key={p._id}>
                     {p.isFeatured && <div className="tag">Most Popular</div>}
                     <div className="therapy-count">{p.therapyCount} Sessions</div>
-                    <div className="price">
-                      <sup>₹</sup>
-                      {p.price.toLocaleString("en-IN")}
-                    </div>
+                                       {p.discountPrice ? (
+                      <div className="price">
+                        <span className="price-strike-lg">₹{p.price.toLocaleString("en-IN")}</span>
+                        <sup>₹</sup>{p.discountPrice.toLocaleString("en-IN")}
+                      </div>
+                    ) : (
+                      <div className="price">
+                        <sup>₹</sup>
+                        {p.price.toLocaleString("en-IN")}
+                      </div>
+                    )}
                     {b.whatsappNumber && (
                       <a
                         className="pkg-mini-btn"

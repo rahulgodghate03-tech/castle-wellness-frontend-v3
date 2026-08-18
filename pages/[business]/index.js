@@ -66,8 +66,14 @@ export default function BusinessHome() {
                       <div className="svc-num">{String(i + 1).padStart(2, "0")}</div>
                       <h3>{s.name}</h3>
                       <p>{s.description}</p>
-                      <div className="svc-price">
-                        <span className="amt">₹{s.price}</span>
+                                           <div className="svc-price">
+                        {s.discountPrice ? (
+                          <span className="amt">
+                            <span className="price-strike">₹{s.price}</span> ₹{s.discountPrice}
+                          </span>
+                        ) : (
+                          <span className="amt">₹{s.price}</span>
+                        )}
                         <span className="from">{s.durationMinutes} min</span>
                       </div>
                     </div>
@@ -91,7 +97,14 @@ export default function BusinessHome() {
                   <div className={`pkg-card fade-up ${p.isFeatured ? "featured" : ""}`} key={p._id}>
                     {p.isFeatured && <div className="tag">Most Popular</div>}
                     <div className="therapy-count">{p.therapyCount} Sessions</div>
-                    <div className="price"><sup>₹</sup>{p.price.toLocaleString("en-IN")}</div>
+                                       {p.discountPrice ? (
+                      <div className="price">
+                        <span className="price-strike-lg">₹{p.price.toLocaleString("en-IN")}</span>
+                        <sup>₹</sup>{p.discountPrice.toLocaleString("en-IN")}
+                      </div>
+                    ) : (
+                      <div className="price"><sup>₹</sup>{p.price.toLocaleString("en-IN")}</div>
+                    )}
                     {b.whatsappNumber && (
                       <a
                         className="pkg-mini-btn"

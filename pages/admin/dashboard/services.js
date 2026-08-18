@@ -5,7 +5,7 @@ import DashboardLayout from "../../../components/admin/DashboardLayout";
 import BusinessSwitcher from "../../../components/admin/BusinessSwitcher";
 import api from "../../../lib/api";
 
-const emptyForm = { name: "", description: "", price: "", durationMinutes: 60 };
+const emptyForm = { name: "", description: "", price: "", discountPrice: "", durationMinutes: 60 };
 
 export default function ServicesPage() {
   const [business, setBusiness] = useState(null);
@@ -42,10 +42,11 @@ export default function ServicesPage() {
 
   const handleEdit = (service) => {
     setEditingId(service._id);
-    setForm({
+       setForm({
       name: service.name,
       description: service.description,
       price: service.price,
+      discountPrice: service.discountPrice || "",
       durationMinutes: service.durationMinutes,
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -128,13 +129,14 @@ export default function ServicesPage() {
               />
             </div>
             <div>
-              <label className="text-xs text-ivory/50 mb-1.5 block">Duration (minutes)</label>
+              <label className="text-xs text-ivory/50 mb-1.5 block">Discount Price (₹) — optional</label>
               <input
                 type="number"
                 min="0"
                 className="input-field"
-                value={form.durationMinutes}
-                onChange={(e) => setForm({ ...form, durationMinutes: e.target.value })}
+                value={form.discountPrice}
+                onChange={(e) => setForm({ ...form, discountPrice: e.target.value })}
+                placeholder="Leave empty for no discount"
               />
             </div>
             <div>
@@ -187,7 +189,16 @@ export default function ServicesPage() {
                     </span>
                   </div>
                   <p className="text-xs text-ivory/50 mb-3 line-clamp-2">{s.description}</p>
-                  <div className="text-goldsoft font-display text-lg mb-3">₹{s.price}</div>
+                                    <div className="mb-3">
+                    {s.discountPrice ? (
+                      <>
+                        <span className="text-ivory/40 text-sm line-through mr-2">₹{s.price}</span>
+                        <span className="text-goldsoft font-display text-lg">₹{s.discountPrice}</span>
+                      </>
+                    ) : (
+                      <span className="text-goldsoft font-display text-lg">₹{s.price}</span>
+                    )}
+                  </div>
                   <div className="flex gap-2 text-xs">
                     <button onClick={() => handleEdit(s)} className="btn-ghost flex-1 py-1.5">Edit</button>
                     <button onClick={() => toggleActive(s)} className="btn-ghost flex-1 py-1.5">
