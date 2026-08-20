@@ -383,3 +383,110 @@ footer.site-footer{
 .price-strike-lg{
   display:block; text-decoration:line-through; opacity:0.4; font-size:16px; margin-bottom:2px;
 }
+
+
+
+/* ---------- Stats bar ---------- */
+.mrg-stats{
+  position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+  gap:0; margin:0 6vw 90px;
+  border:1px solid var(--line); border-radius:2px;
+  background:rgba(201,162,75,0.03);
+  padding:34px 6vw;
+}
+.mrg-stat{text-align:center; padding:10px 34px;}
+.mrg-stat-num{
+  font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:600;
+  background:linear-gradient(100deg, var(--mrg-gold-soft), var(--mrg-red-soft));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  line-height:1;
+}
+.mrg-stat-label{
+  margin-top:8px; font-size:11px; text-transform:uppercase; letter-spacing:0.1em;
+  color:rgba(243,236,224,0.5);
+}
+.mrg-stat-divider{width:1px; height:38px; background:var(--line);}
+@media(max-width:760px){
+  .mrg-stats{gap:18px 0;}
+  .mrg-stat{padding:6px 20px;}
+  .mrg-stat-divider{display:none;}
+  .mrg-stat-num{font-size:30px;}
+}
+
+/* ---------- Why MR Group ---------- */
+.mrg-why{position:relative; z-index:1; padding:20px 6vw 120px; max-width:1240px; margin:0 auto;}
+.mrg-why-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;}
+.mrg-why-card{
+  border:1px solid var(--line); padding:38px 30px; border-radius:2px;
+  background:#17130f; transition:border-color .35s ease, transform .35s ease;
+}
+.mrg-why-card:hover{border-color:var(--mrg-red-soft); transform:translateY(-6px);}
+.mrg-why-num{
+  font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--mrg-gold-soft);
+  opacity:0.7; margin-bottom:16px;
+}
+.mrg-why-card h3{font-size:21px; color:var(--ivory); margin-bottom:12px;}
+.mrg-why-card p{font-size:14px; color:rgba(243,236,224,0.6); line-height:1.75;}
+
+/* ---------- Testimonials ---------- */
+.mrg-testimonials{
+  position:relative; z-index:1; padding:20px 6vw 120px; max-width:1240px; margin:0 auto;
+}
+.mrg-testi-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;}
+.mrg-testi-card{
+  border:1px solid var(--line); padding:32px 28px; border-radius:2px;
+  background:rgba(31,59,44,0.14);
+}
+.mrg-testi-stars{color:var(--mrg-gold-soft); font-size:14px; letter-spacing:2px; margin-bottom:16px;}
+.mrg-testi-card p{
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px;
+  color:rgba(243,236,224,0.82); line-height:1.65; margin-bottom:18px;
+}
+.mrg-testi-name{font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(243,236,224,0.45);}
+
+/* ---------- CTA band ---------- */
+.mrg-cta-band{
+  position:relative; z-index:1; text-align:center; padding:100px 6vw;
+  background:radial-gradient(ellipse 60% 60% at 50% 20%, rgba(194,59,59,0.10), transparent 60%), var(--forest-deep);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.mrg-cta-band h2{font-size:clamp(28px,4vw,44px); color:var(--ivory); margin-bottom:16px;}
+.mrg-cta-band p{color:rgba(243,236,224,0.6); max-width:440px; margin:0 auto 32px; font-size:15px; line-height:1.7;}
+
+/* ---------- Full footer ---------- */
+.mrg-footer-full{
+  position:relative; z-index:1; padding:70px 6vw 30px; background:#0f0d0c;
+}
+.mrg-footer-grid{
+  display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:50px;
+  max-width:1240px; margin:0 auto 50px; padding-bottom:50px;
+  border-bottom:1px solid var(--line);
+}
+@media(max-width:760px){.mrg-footer-grid{grid-template-columns:1fr; gap:34px;}}
+.mrg-footer-col h4{
+  font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--mrg-gold-soft);
+  margin-bottom:18px;
+}
+.mrg-footer-desc{font-size:13.5px; color:rgba(243,236,224,0.55); line-height:1.8; max-width:280px; margin-top:16px;}
+.mrg-footer-link{
+  display:block; font-size:14px; color:rgba(243,236,224,0.65); line-height:2.1;
+  transition:color .25s ease;
+}
+.mrg-footer-link:hover{color:var(--mrg-gold-soft);}
+.mrg-footer-bottom-full{
+  max-width:1240px; margin:0 auto; text-align:center;
+  font-size:12px; color:rgba(243,236,224,0.35);
+}
+
+/* ---------- Scroll-triggered fade ---------- */
+.fade-up-scroll{
+  opacity:0; transform:translateY(28px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.fade-up-scroll.mrg-visible{
+  opacity:1; transform:translateY(0);
+}
+@media(prefers-reduced-motion: reduce){
+  .fade-up-scroll{opacity:1; transform:none; transition:none;}
+}
